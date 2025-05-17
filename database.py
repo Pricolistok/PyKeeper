@@ -1,30 +1,32 @@
-from tkinter.font import names
-
 from sqlalchemy.orm import declarative_base
-from sqlalchemy import Column
-from sqlalchemy import Integer, String, DateTime
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-from datetime import datetime
-
-from consts import MAXI_STR_OF_ORDER
+from sqlalchemy import Column, Integer, String, Float,  DateTime
+from consts import MAXI_STR_NAME, MAXI_LEN_NAME_OF_DISH, MAXI_COMPOUND_OF_DISH, MAXI_RECEIPT
 
 Base = declarative_base()
 
-class Orders(Base):
+class OrdersBase(Base):
     __tablename__ = "orders"
 
     id = Column(Integer, primary_key=True)
-    number_of_customer = Column(Integer)
-    compound_of_order = Column(String(MAXI_STR_OF_ORDER))
+    name_of_customer = Column(String(MAXI_STR_NAME))
+    number_of_order = Column(Integer)
     time_of_order = Column(DateTime)
+    sum = Column(Float)
 
 
-engine = create_engine('sqlite:///sqlite3.db', echo=True, future=True)
-Base.metadata.create_all(engine)
+class Dishes(Base):
+    __tablename__ = "dishes"
 
-session = Session(engine)
-order = Orders(number_of_customer=100, compound_of_order="Burger", time_of_order=datetime.now())
-session.add(order)
-session.commit()
-session.close()
+    id = Column(Integer, primary_key=True)
+    name_of_dish = Column(String(MAXI_LEN_NAME_OF_DISH))
+    compound_of_dish = Column(String(MAXI_COMPOUND_OF_DISH))
+    receipt = Column(String(MAXI_RECEIPT))
+    price = Column(Float)
+
+
+class Merge(Base):
+    __tablename__ = 'merge'
+
+    id = Column(Integer, primary_key=True)
+    order_id = Column(Integer)
+    dish_id = Column(Integer)

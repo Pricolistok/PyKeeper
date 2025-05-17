@@ -6,8 +6,6 @@ from datetime import datetime
 class Item:
     name: str
     quantity: int
-    compound_of_item: str
-    recipe: str
 
 
 class Order:

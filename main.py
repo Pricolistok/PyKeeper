@@ -1,12 +1,11 @@
 from fastapi import FastAPI
 
+from add_dishes_router import dishRouter
+from init_DB import initDB
 
-router = FastAPI()
-
-
-@router.get('/')
-def main_router():
-    print("OK")
+app = FastAPI()
+initDB()
+app.include_router(dishRouter)
 
 
 def main():
