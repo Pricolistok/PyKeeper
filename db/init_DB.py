@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine
-from database import Base
+from db.models import Base
 
 FILE_DB = 'sqlite:///orders.db'
 
