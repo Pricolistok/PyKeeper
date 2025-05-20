@@ -12,6 +12,13 @@ class OrdersBase(Base):
     number_of_order = Column(Integer)
     time_of_order = Column(DateTime)
 
+    def to_dict(self):
+        return {
+            "name_of_customer": self.name_of_customer,
+            "number_of_order": self.number_of_order,
+            "time_of_order": self.time_of_order
+        }
+
 
 class Dishes(Base):
     __tablename__ = "dishes"
