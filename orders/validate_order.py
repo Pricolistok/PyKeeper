@@ -46,7 +46,7 @@ def validate_id_dishes(dishes: dict):
             id_dish = int(i)
             cnt_dish = int(dishes[i])
             print(id_dish, cnt_dish)
-            if id_dish < 0 or id_dish > cnt_dishes_in_DB - 1:
+            if id_dish < 0 or id_dish > cnt_dishes_in_DB:
                 return False
             if cnt_dish <= 0 or cnt_dish > 1000:
                 return False
